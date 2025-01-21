@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: mysql
-  namespace: kolabajabe
+  name: kolab-aja-mysql
+  namespace: argocd
 spec:
   serviceName: "mysql-service"
   replicas: 1
   selector:
     matchLabels:
-      app: mysql
+      app: kolab-aja-mysql
   template:
     metadata:
       labels:
-        app: mysql
+        app: kolab-aja-mysql
     spec:
       containers:
-        - name: mysql
+        - name: kolab-aja-mysql
           image: mysql:8.0
           env:
             - name: MYSQL_ROOT_PASSWORD
@@ -29,11 +29,11 @@ spec:
           ports:
             - containerPort: 3306
           volumeMounts:
-            - name: mysql-persistent-storage
+            - name: mysql-data
               mountPath: /var/lib/mysql
   volumeClaimTemplates:
     - metadata:
-        name: mysql-persistent-storage
+        name: mysql-data
       spec:
         accessModes: ["ReadWriteOnce"]
         resources:
