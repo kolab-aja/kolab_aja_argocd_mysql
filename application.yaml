@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: mysql
-  namespace: kolabajabe
+  namespace: kolabajamysql
 spec:
   serviceName: "mysql-service"
   replicas: 3
