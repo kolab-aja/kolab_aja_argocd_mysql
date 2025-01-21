@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: mysql
-  namespace: kolabajamysql
+  namespace: kolabajabe
 spec:
   serviceName: "mysql-service"
   replicas: 3
@@ -23,9 +23,9 @@ spec:
             - name: MYSQL_DATABASE
               value: "kolabaja"
             - name: MYSQL_USER
-              value: "test"
+              value: "root"
             - name: MYSQL_PASSWORD
-              value: "123"
+              value: ""
           ports:
             - containerPort: 3306
           volumeMounts:
