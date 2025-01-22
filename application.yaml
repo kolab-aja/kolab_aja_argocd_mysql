@@ -4,38 +4,20 @@ metadata:
   name: kolab-aja-mysql
   namespace: argocd
 spec:
-  serviceName: "mysql-service"
-  replicas: 1
-  selector:
-    matchLabels:
-      app: kolab-aja-mysql
-  template:
-    metadata:
-      labels:
-        app: kolab-aja-mysql
-    spec:
-      containers:
-        - name: kolab-aja-mysql
-          image: mysql:8.0
-          env:
-            - name: MYSQL_ROOT_PASSWORD
-              value: ""
-            - name: MYSQL_DATABASE
-              value: "kolabaja"
-            - name: MYSQL_USER
-              value: "root"
-            - name: MYSQL_PASSWORD
-              value: ""
-          ports:
-            - containerPort: 3306
-          volumeMounts:
-            - name: mysql-data
-              mountPath: /var/lib/mysql
-  volumeClaimTemplates:
-    - metadata:
-        name: mysql-data
-      spec:
-        accessModes: ["ReadWriteOnce"]
-        resources:
-          requests:
-            storage: 10Gi
+  project: default
+
+  source:
+    repoURL: https://github.com/kolab-aja/kolab_aja_argocd_mysql.git
+    targetRevision: HEAD
+    path: dev
+  destination: 
+    server: https://kubernetes.default.svc
+    namespace: kolabajamysql
+
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+
+    automated:
+      selfHeal: true
+      prune: true

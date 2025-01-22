@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kolabajamysql
+spec:
+  selector:
+    matchLabels:
+      app: kolabajamysql
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: kolabajamysql
+    spec:
+      containers:
+        - name: kolabajamysql
+          image: mysql:8.0.29
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: ""
+            - name: MYSQL_DATABASE
+              value: "kolabaja"
+            - name: MYSQL_USER
+              value: "test"
+            - name: MYSQL_PASSWORD
+              value: "1234"
