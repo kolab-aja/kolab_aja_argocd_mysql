@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Application
 metadata:
   name: kolab-aja-mysql
   namespace: argocd
