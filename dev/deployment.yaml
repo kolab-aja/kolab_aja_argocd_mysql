@@ -26,3 +26,10 @@ spec:
               value: "test"
             - name: MYSQL_PASSWORD
               value: "1234"
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "256Mi"
+            limits:
+              cpu: "1"
+              memory: "512Mi"
